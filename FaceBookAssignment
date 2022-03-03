@@ -1,0 +1,56 @@
+package xPathAssignments;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class FaceBook_Assignment {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		//Assignment:1
+		//FaceBook:================================
+		// Step 1: Download and set the path 
+		// Step 2: Launch the chromebrowser
+		// Step 3: Load the URL https://en-gb.facebook.com/
+		// Step 4: Maximise the window
+		// Step 5: Add implicit wait
+		// Step 6: Click on Create New Account button
+		// Step 7: Enter the first name
+		// Step 8: Enter the last name
+		// Step 9: Enter the mobile number
+		// Step 10: Enter the password
+		// Step 11: Handle all the three drop downs
+		// Step 12: Select the radio button "Female" ( A normal click will do for this step) 
+		
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://en-gb.facebook.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		//WebElement createaccountbutton = driver.findElement(By.xpath("//a[@ id = 'u_0_2_lR']"));
+		//createaccountbutton.click();	
+		driver.findElement(By.xpath("(//a[@role='button'])[2]")).click();
+		driver.findElement(By.xpath("//input[@ name = 'firstname']")).sendKeys("MyfirstName");
+		driver.findElement(By.xpath("//input[@ name = 'lastname']")).sendKeys("MyLastName");
+		driver.findElement(By.xpath("//input[@ name = 'reg_email__']")).sendKeys("9988776655");
+		driver.findElement(By.xpath("//input[@ data-type = 'password']")).sendKeys("passpass");
+		Select day = new Select (driver.findElement(By.xpath("//select[@ id = 'day']")));
+		day.selectByIndex(2);
+		Select month = new Select (driver.findElement(By.xpath("//select[@ id = 'month']")));
+		month.selectByIndex(2);
+		Select year = new Select (driver.findElement(By.xpath("//select[@ id = 'year']")));
+		year.selectByIndex(30);
+		driver.findElement(By.xpath("//label[contains(text(),'Custom')]")).click();
+		
+	}
+
+}
